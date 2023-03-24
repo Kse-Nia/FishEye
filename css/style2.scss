@@ -1,0 +1,49 @@
+@import "global";
+@import "variables";
+@import "mixins";
+
+.logo {
+  height: 50px;
+  margin-left: 100px;
+}
+
+.photographer {
+  &_container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &-article {
+    width: 30%;
+    margin-bottom: 1%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &-name {
+    color: $h2;
+  }
+  &-portrait {
+    border-radius: 100px;
+    object-fit: cover;
+
+    height: 200px;
+    width: 200px;
+    margin: 3% auto 3%;
+  }
+  &-localisation {
+    font-size: 13px;
+    color: $h1;
+  }
+  &-tagline {
+    font-size: 13px;
+  }
+  &-price {
+    color: $grey;
+    font-size: 16px;
+  }
+}
