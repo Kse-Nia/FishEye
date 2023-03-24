@@ -5,11 +5,22 @@
 .logo {
   height: 50px;
   margin-left: 100px;
+  @include devices(mobile) {
+    margin-left: 0;
+  }
 }
 
 .photographer {
   &_container {
     width: 100vw;
+    @include devices(mobile) {
+      height: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -26,6 +37,7 @@
   }
   &-name {
     color: $h2;
+    font-size: calc(1.5rem + 1vw);
   }
   &-portrait {
     border-radius: 100px;
