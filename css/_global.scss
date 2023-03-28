@@ -20,7 +20,7 @@ header {
   @include devices(mobile) {
     flex-direction: column;
     height: 100%;
-    margin-top: 5%;
+    margin: 5% auto 5%;
   }
 }
 

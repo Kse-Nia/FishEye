@@ -31,3 +31,6 @@ git clone https://github.com/Kse-Nia/FrontEnd-Fisheye.git
 ```
 
 Ouvrir le fichier index.html et lancer le site avec "Live Server".
+
+Vous avez aussi la possibilité de consulter le site en ligne sur GitHub Pages : 
+https://fisheye-portfolios.kseniya-mudrakova.fr/

@@ -1,3 +1,5 @@
+import Photographe from "../model/photographe";
+
 // Creation elements function
 function createElements(tag, attributes = {}, textContent = "") {
   const element = document.createElement(tag);
@@ -56,9 +58,9 @@ function photographerFactory(data) {
     elements.forEach((elements) => article.appendChild(elements));
 
     // Add event listener to redirect to photographer profile page
-    article.addEventListener("click", () => {
+    /*   article.addEventListener("click", () => {
       window.location.href = `/photographer.html?id=${id}`;
-    });
+    }); */
 
     return article;
   }

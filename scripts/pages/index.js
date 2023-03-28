@@ -1,4 +1,4 @@
-// Function fetch data
+// Function fetch data json
 async function getPhotographers() {
   try {
     const response = await fetch("/data/photographers.json", {
@@ -18,10 +18,6 @@ async function getPhotographers() {
   }
 }
 
-function redirectToProfile(id) {
-  window.location.href = `/pages/photographer.html?id=${id}`;
-}
-
 async function displayData(photographers) {
   const photographersSection = document.querySelector(
     ".photographer_container"
@@ -31,10 +27,14 @@ async function displayData(photographers) {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
-  });
 
-  photographersSection.addEventListener("click", () => {
-    redirectToProfile(photographer.id);
+    photographersSection.addEventListener(
+      "click",
+      function (e, id) {
+        window.location.href = `/pages/photographer.html?id=${id}`;
+      },
+      false
+    );
   });
 }
 
