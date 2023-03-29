@@ -1,4 +1,3 @@
-// Function fetch data json
 async function getPhotographers() {
   try {
     const response = await fetch("/data/photographers.json", {
@@ -10,7 +9,6 @@ async function getPhotographers() {
     if (!response.ok) {
       throw new Error("Erreur HTTP " + response.status);
     }
-    console.log(response);
     const data = await response.json();
     return data;
   } catch (error) {

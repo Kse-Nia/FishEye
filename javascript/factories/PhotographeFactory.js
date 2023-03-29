@@ -1,4 +1,4 @@
-import Photographe from "../model/photographe";
+//import Photographe from "./model/Photographe.js";
 
 // Creation elements function
 function createElements(tag, attributes = {}, textContent = "") {
