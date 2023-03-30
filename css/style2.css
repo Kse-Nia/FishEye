@@ -124,7 +124,7 @@ h1 {
 
 .photographer-name {
   color: #d3573c;
-  font-size: calc(1.5rem + 1vw);
+  font-size: calc(1rem + 1vw);
 }
 
 .photographer-portrait {
@@ -145,17 +145,19 @@ h1 {
 }
 
 .photographer-localisation {
-  font-size: 13px;
+  font-size: calc(0.4em + 1vw);
   color: #901c1c;
 }
 
 .photographer-tagline {
-  font-size: 13px;
+  font-size: calc(0.4em + 1vw);
 }
 
 .photographer-price {
+  padding: 1%;
+  line-height: 1.5;
   color: #757575;
-  font-size: 16px;
+  font-size: calc(0.4em + 1vw);
 }
 
 .profile-contact {
@@ -173,8 +175,6 @@ h1 {
 
 .profile-article {
   width: auto;
-  /*    margin-bottom: 1%;
-    padding: 0 5% 0; */
   margin: 0 5% 1%;
   display: -webkit-box;
   display: -ms-flexbox;
