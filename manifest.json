@@ -1,0 +1,36 @@
+{
+  "short_name": "Fisheye",
+  "name": "FishEye Freelance Portfolios ",
+  "id": "/?source=pwa",
+  "start_url": "fisheye-portfolios.kseniya-mudrakova.fr",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "background_color": "#FFFFFF",
+  "shortcuts": [
+    {
+      "name": "FishEye Freelance Portfolios ",
+      "short_name": "Fisheye",
+      "description": "Retrouvez de nombreux photographes freelance pour vos projets de photographie.",
+      "icons": [
+        {
+          "src": "/assets/favicon.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "How's weather tomorrow?",
+      "short_name": "Tomorrow",
+      "description": "View weather information for tomorrow",
+      "url": "/tomorrow?source=pwa",
+      "icons": [
+        {
+          "src": "/assets/favicon.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "description": "Retrouver de nombreux photographes freelance pour vos projets de photographie."
+}
