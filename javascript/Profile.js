@@ -30,7 +30,7 @@ async function displayProfile() {
     class: "profile-article",
   });
 
-  const picture = `./assets/Photos/Portraits/${profile.portrait}`; // Photographers portraits
+  const picture = `./assets/Photos/Portraits2/${profile.portrait}`; // Photographers portraits
 
   const profileDetailsDiv = createElements("div", {
     class: "profile-details",
