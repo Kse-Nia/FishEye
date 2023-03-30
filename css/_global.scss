@@ -5,10 +5,12 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  box-shadow: 0 0 0 1px red inset;
 }
 
 body {
   font-family: $font;
+  max-width: 100vw;
 }
 
 header {

@@ -2,10 +2,13 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  -webkit-box-shadow: 0 0 0 1px red inset;
+          box-shadow: 0 0 0 1px red inset;
 }
 
 body {
   font-family: "DM Sans", sans-serif;
+  max-width: 100vw;
 }
 
 header {
@@ -113,6 +116,12 @@ h1 {
           flex-direction: column;
 }
 
+@media only screen and (max-width: 750px) {
+  .photographer-article {
+    width: 100%;
+  }
+}
+
 .photographer-name {
   color: #d3573c;
   font-size: calc(1.5rem + 1vw);
@@ -127,6 +136,14 @@ h1 {
   margin: 3% auto 3%;
 }
 
+@media only screen and (max-width: 750px) {
+  .photographer-portrait {
+    height: 300px;
+    width: 300px;
+    border-radius: 150px;
+  }
+}
+
 .photographer-localisation {
   font-size: 13px;
   color: #901c1c;
@@ -139,5 +156,57 @@ h1 {
 .photographer-price {
   color: #757575;
   font-size: 16px;
+}
+
+.profile-contact {
+  background-color: #901c1c;
+  color: #ffffff;
+  border: none;
+  width: 170px;
+  height: 70px;
+  border-radius: 5px;
+}
+
+.profile-contact:hover {
+  background-color: #d3573c;
+}
+
+.profile-article {
+  width: auto;
+  /*    margin-bottom: 1%;
+    padding: 0 5% 0; */
+  margin: 0 5% 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 750px) {
+  .profile-article {
+    width: 100%;
+  }
+}
+
+.profile-article img {
+  margin: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 750px) {
+  .profile-article img {
+    width: 100%;
+    height: 100%;
+  }
 }
 /*# sourceMappingURL=style2.css.map */
