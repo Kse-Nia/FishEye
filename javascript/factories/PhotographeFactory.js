@@ -18,7 +18,7 @@ function createElementsContent(tag, attributes, content) {
 // Photographer factory, create DOM elements
 function photographerFactory(data) {
   const { id, name, portrait, city, country, tagline, price } = data;
-  const picture = `./assets/Photos/Portraits/${portrait}`;
+  const picture = `./assets/Photos/Portraits2/${portrait}`;
 
   function getUserCardDOM() {
     const article = createElements("article", {
@@ -33,8 +33,8 @@ function photographerFactory(data) {
         class: "photographer-portrait",
       }),
       createElementsContent("h2", { class: "photographer-name" }, name),
-      createElementsContent("p", { class: "photograph-country" }, country),
-      createElementsContent("p", { class: "photograph-city" }, city),
+      /*  createElementsContent("p", { class: "photograph-country" }, country),
+      createElementsContent("p", { class: "photograph-city" }, city), */
       createElementsContent(
         "p",
         { class: "photographer-localisation" },
