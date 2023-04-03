@@ -27,6 +27,31 @@ async function displayData(photographers) {
   });
 }
 
+// Profile
+async function displayProfile() {
+  const json = await fetch("/data/photographers.json");
+  const data = await json.json();
+  const photographers = data.photographers;
+  const profile = photographers.find((photographer) => photographer.id == id);
+
+  const photographerProfile = new PhotographerProfileFactory(profile);
+  const profileDOM = photographerProfile.getProfileDOM();
+  console.log(photographerProfile);
+  // Display modal
+  const closeBtn = document.querySelector(".close");
+  const btnContact = document.querySelector(".profile-contact");
+  btnContact.addEventListener("click", () => {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "block";
+  });
+  closeBtn.addEventListener("click", () => {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "none";
+  });
+}
+
+displayProfile();
+
 async function init() {
   const { photographers } = await getPhotographers();
   displayData(photographers);
