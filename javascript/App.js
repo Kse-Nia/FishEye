@@ -12,7 +12,7 @@ async function getPhotographers() {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error("Error:", error);
   }
 }
 
@@ -20,9 +20,8 @@ async function displayData(photographers) {
   const photographersSection = document.querySelector(
     ".photographer_container"
   );
-
   photographers.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
+    const photographerModel = new PhotographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
