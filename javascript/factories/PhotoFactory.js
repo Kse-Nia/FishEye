@@ -33,6 +33,7 @@ class PhotographerFactory {
       class: "photographer-article",
       "data-id": this.id,
     });
+    console.log(this.id);
 
     const elements = [
       createElements("img", {
@@ -64,22 +65,17 @@ class PhotographerFactory {
       window.location.href = `./photographer.html?id=${photographId}`;
       console.log(photographId);
     });
-
     elements.forEach((element) => article.appendChild(element));
     return article;
   }
 }
 
-const photographer = new PhotographerFactory();
-const userCardDOM = photographer.getUserCardDOM();
-
 // Profile Display
-
 class PhotographerProfileFactory {
   constructor(profile) {
-    if (!profile) {
+    /*   if (!profile) {
       throw new Error("Impossible d'afficher ce profil");
-    }
+    } */
     const { id, name, portrait, city, country, tagline } = profile;
     this.id = id;
     this.name = name;
@@ -93,7 +89,6 @@ class PhotographerProfileFactory {
     const urlParams = new URLSearchParams(window.location.search); // Get url parameters
     const id = urlParams.get("id"); // Get photographer id
     console.log(id);
-
     const profileContainer = document.querySelector(".profile_container");
     const article = createElements("article", {
       class: "profile-article",
@@ -134,13 +129,34 @@ class PhotographerProfileFactory {
     detailsElements.forEach((element) =>
       profileDetailsDiv.appendChild(element)
     );
+
     modalElements.forEach((element) => article.appendChild(element));
     elements.forEach((element) => article.appendChild(element));
     profileContainer.appendChild(article);
+
+    // Modal Form
+    const form = document.querySelector("#contact-form");
+    const modal = document.querySelector(".modal");
+    const validationBtn = document.querySelector(".profile-contact");
+    const closeBtn = createElements("button", {
+      class: "close-btn",
+    });
+    console.log(form);
+    console.log(validationBtn);
+
+    validationBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.style.display = "block"; // Make sure the form is displayed
+      console.log("click");
+    });
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.style.display = "none";
+      console.log("click");
+    });
 
     return article;
   }
 }
 
 const profile = new PhotographerProfileFactory();
-const profileDOM = profile.getProfileDOM();

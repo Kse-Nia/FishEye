@@ -12,7 +12,7 @@ async function getPhotographers() {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error:", error);
+    console.log(error);
   }
 }
 
@@ -27,34 +27,29 @@ async function displayData(photographers) {
   });
 }
 
-// Profile
-async function displayProfile() {
-  const json = await fetch("/data/photographers.json");
-  const data = await json.json();
+async function displayProfile(id) {
+  const response = await fetch("/data/photographers.json");
+  const data = await response.json();
   const photographers = data.photographers;
   const profile = photographers.find((photographer) => photographer.id == id);
 
   const photographerProfile = new PhotographerProfileFactory(profile);
-  const profileDOM = photographerProfile.getProfileDOM();
   console.log(photographerProfile);
-  // Display modal
-  const closeBtn = document.querySelector(".close");
-  const btnContact = document.querySelector(".profile-contact");
-  btnContact.addEventListener("click", () => {
-    const modal = document.querySelector(".modal");
-    modal.style.display = "block";
-  });
-  closeBtn.addEventListener("click", () => {
-    const modal = document.querySelector(".modal");
-    modal.style.display = "none";
-  });
-}
 
-displayProfile();
+  const profileDOM = photographerProfile.getProfileDOM();
+  const profileContainer = document.querySelector(".profile_container");
+  profileContainer.appendChild(profileDOM);
+}
 
 async function init() {
   const { photographers } = await getPhotographers();
-  displayData(photographers);
+  const id = new URLSearchParams(window.location.search).get("id");
+
+  if (id) {
+    displayProfile(id);
+  } else {
+    displayData(photographers);
+  }
 }
 
 init();
