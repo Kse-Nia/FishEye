@@ -226,5 +226,28 @@ h1 {
 
 .modal {
   display: none;
+  background-color: #db8876;
+}
+
+.modal-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal_button {
+  background-color: #d3573c;
+  color: #ffffff;
+  border: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=style2.css.map */

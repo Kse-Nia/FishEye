@@ -110,4 +110,18 @@
 
 .modal {
   display: none;
+  background-color: $background;
+  &-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &_button {
+    background-color: $button;
+    color: #ffffff;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+  }
 }
