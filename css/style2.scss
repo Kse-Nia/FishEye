@@ -29,7 +29,6 @@
   &-article {
     width: 30%;
     margin: 1% 0 1%;
-    //margin-bottom: 1%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -75,9 +74,10 @@
     background-color: $h1;
     color: #ffffff;
     border: none;
-    width: 170px;
-    height: 70px;
+    width: 150px;
+    height: 50px;
     border-radius: 5px;
+    order: 2;
   }
   &-contact:hover {
     background-color: $button;
@@ -88,11 +88,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    //flex-direction: row-reverse;
     @include devices(mobile) {
       width: 100%;
     }
+    &_details {
+      order: 3;
+    }
     & img {
+      order: 2;
       margin: 0;
       object-fit: cover;
       @include devices(mobile) {
@@ -101,4 +106,8 @@
       }
     }
   }
+}
+
+.modal {
+  display: none;
 }
