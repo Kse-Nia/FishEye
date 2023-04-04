@@ -25,26 +25,45 @@
       />
     </header>
     <main id="main">
-      <div class="profile_container"></div>
       <div class="photograph-header"></div>
+      <div class="profile_container"></div>
     </main>
     <div id="contact_modal">
-      <div class="modal">
-        <header>
+      <div class="modal" role="dialog" aria-hidden="true">
+        <header class="modal_header">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img
+            class="close-btn"
+            src="assets/icons/close.svg"
+            alt="close icon"
+          />
         </header>
-        <form>
-          <div>
-            <label>Prénom: <input type="text" autocomplete="prenom" /></label>
-          </div>
-          <button class="contact_button">Envoyer</button>
-        </form>
+        <div id="media"></div>
+        <div class="modal-form">
+          <form class="modal_form-inputs" id="contact-form">
+            <label
+              >Prénom:
+              <input type="text" autocomplete="prenom" class="modal-input"
+            /></label>
+            <label
+              >Nom: <input type="text" autocomplete="nom" class="modal-input"
+            /></label>
+            <label
+              >Email:
+              <input type="email" autocomplete="email" class="modal-input"
+            /></label>
+            <label
+              >Votre message:
+              <input type="text" autocomplete="text" class="modal-input"
+            /></label>
+            <button class="modal_button">Envoyer</button>
+          </form>
+        </div>
       </div>
     </div>
-    <script src="/javascript/models/Photographe.js"></script>
-    <script src="/javascript/factories/PhotographeFactory.js"></script>
-    <script src="/javascript/Profile.js"></script>
-    <!--  <script src="/scripts/utils/contactForm.js"></script> -->
+    <script src="/javascript/factories/PhotoFactory.js"></script>
+    <script src="/javascript/factories/MediaFactory.js"></script>
+    <script src="/javascript/Templates/Video.js"></script>
+    <script src="/javascript/App.js"></script>
   </body>
 </html>
