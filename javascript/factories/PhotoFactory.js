@@ -28,13 +28,11 @@ class PhotographerFactory {
     this.price = price;
     this.picture = `./assets/Photos/Portraits2/${portrait}`;
   }
-  getUserCardDOM() {
+  getUsersCardDOM() {
     const article = createElements("article", {
       class: "photographer-article",
       "data-id": this.id,
     });
-    console.log(this.id);
-
     const elements = [
       createElements("img", {
         src: this.picture,
@@ -59,7 +57,6 @@ class PhotographerFactory {
         `${this.price}€/jour`
       ),
     ];
-
     article.addEventListener("click", () => {
       const photographId = article.dataset.id;
       window.location.href = `./photographer.html?id=${photographId}`;

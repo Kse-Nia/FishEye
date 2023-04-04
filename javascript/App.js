@@ -22,7 +22,7 @@ async function displayData(photographers) {
   );
   photographers.forEach((photographer) => {
     const photographerModel = new PhotographerFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
+    const userCardDOM = photographerModel.getUsersCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
 }
