@@ -40,23 +40,54 @@
         </header>
         <div id="media"></div>
         <div class="modal-form">
-          <form class="modal_form-inputs" id="contact-form">
-            <label
-              >Prénom:
-              <input type="text" autocomplete="prenom" class="modal-input"
-            /></label>
-            <label
-              >Nom: <input type="text" autocomplete="nom" class="modal-input"
-            /></label>
-            <label
-              >Email:
-              <input type="email" autocomplete="email" class="modal-input"
-            /></label>
-            <label
-              >Votre message:
-              <input type="text" autocomplete="text" class="modal-input"
-            /></label>
-            <button class="modal_button">Envoyer</button>
+          <form action="/submit" method="POST">
+            <fieldset>
+              <div>
+                <label for="firstname">Prénom :</label>
+                <input
+                  class="modal_input"
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div>
+                <label for="lastname">Nom :</label>
+                <input
+                  class="modal_input"
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div>
+                <label for="email">Email:</label>
+                <input
+                  class="modal_input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div>
+                <label for="message">Votre message:</label>
+                <textarea
+                  class="modal_message"
+                  id="message"
+                  name="message"
+                  rows="4"
+                  cols="50"
+                  aria-describedby="message"
+                ></textarea>
+              </div>
+              <button class="modal_button" type="submit">Envoyer</button>
+            </fieldset>
           </form>
         </div>
       </div>
