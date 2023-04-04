@@ -34,13 +34,16 @@ async function displayProfile(id) {
   const profile = photographers.find((photographer) => photographer.id == id);
 
   const photographerProfile = new PhotographerProfileFactory(profile);
-  console.log(photographerProfile);
 
   const profileDOM = photographerProfile.getProfileDOM();
   const profileContainer = document.querySelector(".profile_container");
   profileContainer.appendChild(profileDOM);
 }
 
+async function displayGallery(media) {
+  const response = await fetch("/data/photographers.json");
+  const data = await response.json();
+}
 async function init() {
   const { photographers } = await getPhotographers();
   const id = new URLSearchParams(window.location.search).get("id");

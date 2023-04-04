@@ -73,9 +73,6 @@ class PhotographerFactory {
 // Profile Display
 class PhotographerProfileFactory {
   constructor(profile) {
-    /*   if (!profile) {
-      throw new Error("Impossible d'afficher ce profil");
-    } */
     const { id, name, portrait, city, country, tagline } = profile;
     this.id = id;
     this.name = name;
@@ -149,6 +146,7 @@ class PhotographerProfileFactory {
       modal.style.display = "block"; // Make sure the form is displayed
       console.log("click");
     });
+
     closeBtn.addEventListener("click", (e) => {
       e.preventDefault();
       modal.style.display = "none";
