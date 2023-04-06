@@ -22,7 +22,8 @@ class Media {
     this.id = id;
     this.photographerId = photographerId;
     this.title = title;
-    this.image = image;
+    //this.image = image;
+    this.image = `./assets/Media/${photographerId}/${image}`;
     this.video = video;
     this.likes = likes;
     this.date = date;
@@ -34,20 +35,36 @@ class Media {
       "data-id": this.id,
     });
     const article = createElements("article", {
-      class: "media-article",
+      class: "gallery-article",
+    });
+    const containerDescription = createElements("div", {
+      class: "gallery-article_description",
     });
     const elements = [
       createElements("img", {
         src: this.image,
         alt: this.name,
-        class: "media_picture",
+        class: "gallery-article_picture",
         ariaLabel: "Photo",
       }),
-      createElementsContent("h3", { class: "media_title" }, this.title),
-      createElementsContent("p", { class: "media_likes" }, this.likes),
     ];
-
+    const elementsDescription = [
+      createElementsContent(
+        "h3",
+        { class: "gallery-article_title" },
+        this.title
+      ),
+      createElementsContent(
+        "p",
+        { class: "gallery-article_likes" },
+        this.likes
+      ),
+    ];
     elements.forEach((element) => article.appendChild(element));
+    elementsDescription.forEach((element) =>
+      containerDescription.appendChild(element)
+    );
+    article.appendChild(containerDescription);
     galleryContainer.appendChild(article);
     return galleryContainer;
   }
