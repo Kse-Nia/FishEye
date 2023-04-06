@@ -1,5 +1,6 @@
-// Create elements function
+// Create DOM elements
 function createElements(tag, attributes = {}, textContent = "") {
+  // Create tag element + add attributes
   const element = document.createElement(tag);
   for (const [key, value] of Object.entries(attributes)) {
     element.setAttribute(key, value);
@@ -117,14 +118,10 @@ class PhotographerFactory {
     // Modal Form
     const form = document.querySelector("#contact-form");
     const modal = document.querySelector(".modal");
-    const validationBtn = document.querySelector(".profile-contact");
-    const closeBtn = createElements("button", {
-      class: "close-btn",
-    });
-    console.log(form);
-    console.log(validationBtn);
+    const openContact = document.querySelector(".profile-contact");
+    const closeBtn = document.querySelector(".close-btn");
 
-    validationBtn.addEventListener("click", (e) => {
+    openContact.addEventListener("click", (e) => {
       e.preventDefault();
       modal.style.display = "block"; // Make sure the form is displayed
       console.log("click");
