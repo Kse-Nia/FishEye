@@ -33,9 +33,7 @@ async function displayProfile(id) {
   const data = await response.json();
   const photographers = data.photographers;
   const profile = photographers.find((photographer) => photographer.id == id);
-
   const photographerProfile = new PhotographerFactory(profile); // Use the same class
-
   const profileDOM = photographerProfile.getProfileDOM(); // Call the getProfileDOM() method
   const profileContainer = document.querySelector(".profile_container");
   profileContainer.appendChild(profileDOM);
@@ -43,17 +41,30 @@ async function displayProfile(id) {
 
 // Galery
 async function displayGallery(media) {
-  const response = await fetch("/data/photographers.json");
-  const data = await response.json();
+  const main = document.querySelector("#main");
+  const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
+
+  media
+    .filter((item) => item.photographerId == id)
+    .forEach((item) => {
+      const mediaGallery = new Media(item);
+      const mediaCardDom = mediaGallery.getGalleryDOM();
+      main.appendChild(mediaCardDom);
+    });
 }
+
 async function init() {
-  const { photographers } = await getPhotographers();
+  const { photographers, media } = await getPhotographers();
   const id = new URLSearchParams(window.location.search).get("id");
 
   if (id) {
     displayProfile(id);
-  } else {
+  } else if (photographers) {
     displayData(photographers);
+  }
+
+  if (media) {
+    displayGallery(media);
   }
 }
 
