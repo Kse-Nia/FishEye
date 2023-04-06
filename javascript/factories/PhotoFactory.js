@@ -8,7 +8,6 @@ function createElements(tag, attributes = {}, textContent = "") {
   return element;
 }
 
-// Create elements
 function createElementsContent(tag, attributes, content) {
   const element = createElements(tag, attributes);
   element.textContent = content;
@@ -26,7 +25,7 @@ class PhotographerFactory {
     this.country = country;
     this.tagline = tagline;
     this.price = price;
-    this.picture = `./assets/Photos/Portraits2/${portrait}`;
+    this.picture = `./assets/Photos/Portraits/${portrait}`;
   }
   getUsersCardDOM() {
     const article = createElements("article", {
@@ -65,20 +64,7 @@ class PhotographerFactory {
     elements.forEach((element) => article.appendChild(element));
     return article;
   }
-}
 
-// Profile Display
-class PhotographerProfileFactory {
-  constructor(profile) {
-    const { id, name, portrait, city, country, tagline } = profile;
-    this.id = id;
-    this.name = name;
-    this.portrait = portrait;
-    this.city = city;
-    this.country = country;
-    this.tagline = tagline;
-    this.picture = `./assets/Photos/Portraits2/${portrait}`;
-  }
   getProfileDOM() {
     const urlParams = new URLSearchParams(window.location.search); // Get url parameters
     const id = urlParams.get("id"); // Get photographer id
@@ -153,5 +139,3 @@ class PhotographerProfileFactory {
     return article;
   }
 }
-
-const profile = new PhotographerProfileFactory();

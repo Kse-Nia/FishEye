@@ -27,19 +27,21 @@ async function displayData(photographers) {
   });
 }
 
+// Profile
 async function displayProfile(id) {
   const response = await fetch("/data/photographers.json");
   const data = await response.json();
   const photographers = data.photographers;
   const profile = photographers.find((photographer) => photographer.id == id);
 
-  const photographerProfile = new PhotographerProfileFactory(profile);
+  const photographerProfile = new PhotographerFactory(profile); // Use the same class
 
-  const profileDOM = photographerProfile.getProfileDOM();
+  const profileDOM = photographerProfile.getProfileDOM(); // Call the getProfileDOM() method
   const profileContainer = document.querySelector(".profile_container");
   profileContainer.appendChild(profileDOM);
 }
 
+// Galery
 async function displayGallery(media) {
   const response = await fetch("/data/photographers.json");
   const data = await response.json();
