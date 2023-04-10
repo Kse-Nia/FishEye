@@ -26,7 +26,7 @@ class PhotographerFactory {
     this.country = country;
     this.tagline = tagline;
     this.price = price;
-    this.picture = `./assets/Photos/Portraits/${portrait}`;
+    this.picture = `./assets/Media/Portraits/${portrait}`;
   }
   getUsersCardDOM() {
     const article = createElements("article", {
@@ -69,7 +69,7 @@ class PhotographerFactory {
   getProfileDOM() {
     const urlParams = new URLSearchParams(window.location.search); // Get url parameters
     const id = urlParams.get("id"); // Get photographer id
-    //console.log(id);
+
     const profileContainer = document.querySelector(".profile_container");
     const article = createElements("article", {
       class: "profile-article",

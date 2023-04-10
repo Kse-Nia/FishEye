@@ -1,3 +1,19 @@
+export function createElements(tag, attributes = {}, textContent = "") {
+  // Create tag element + add attributes
+  const element = document.createElement(tag);
+  for (const [key, value] of Object.entries(attributes)) {
+    element.setAttribute(key, value);
+  }
+  element.textContent = textContent;
+  return element;
+}
+
+export function createElementsContent(tag, attributes, content) {
+  const element = createElements(tag, attributes);
+  element.textContent = content;
+  return element;
+}
+
 async function getPhotographers() {
   try {
     const response = await fetch("/data/photographers.json", {
@@ -43,14 +59,19 @@ async function displayProfile(id) {
 async function displayGallery(media) {
   const main = document.querySelector("#main");
   const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
+  const galleryContainer = createElements("div", {
+    class: "gallery_container",
+  });
 
   media
     .filter((item) => item.photographerId == id)
     .forEach((item) => {
       const mediaGallery = new Media(item);
-      const mediaCardDom = mediaGallery.getGalleryDOM();
-      main.appendChild(mediaCardDom);
+      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
+      galleryContainer.appendChild(mediaArticleDom);
     });
+
+  main.appendChild(galleryContainer);
 }
 
 async function init() {
