@@ -117,7 +117,7 @@ class PhotographerFactory {
 
     // Contact form
     const openContact = document.querySelector(".profile-contact");
-    new ContactForm(openContact);
+    const _ = new ContactForm(openContact);
 
     return article;
   }
