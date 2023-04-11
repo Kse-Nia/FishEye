@@ -8,6 +8,10 @@
       name="description"
       content="Fisheye - plateform pour photographes freelance"
     />
+    <script
+      src="https://kit.fontawesome.com/1f6041ea80.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
@@ -17,12 +21,14 @@
   </head>
   <body>
     <header>
-      <img
-        src="assets/images/logo.png"
-        class="logo"
-        role="img"
-        alt="logo de Fisheye avec une icone appareil photo"
-      />
+      <a href="index.html" class="logo-link">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          role="img"
+          alt="logo de Fisheye avec une icone appareil photo"
+        />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header"></div>
@@ -94,6 +100,8 @@
     </div>
     <script src="javascript/factories/PhotoFactory.js"></script>
     <script src="javascript/factories/MediaFactory.js"></script>
+    <script src="javascript/factories/ContactForm.js"></script>
+    <script src="javascript/Templates/VideoPlayer.js"></script>
     <script src="./javascript/App.js" type="module"></script>
   </body>
 </html>
