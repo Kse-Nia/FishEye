@@ -4,6 +4,7 @@ class ContactForm {
     this.modal = document.querySelector(".modal");
     this.openContact = openContact;
     this.closeBtn = document.querySelector(".close-btn");
+    console.log("ok", this.form);
     this.init(); // initialization
   }
 
@@ -11,20 +12,16 @@ class ContactForm {
     this.openContact.addEventListener("click", (e) => {
       e.preventDefault();
       this.modal.style.display = "block";
-      console.log("click");
     });
 
     this.closeBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.modal.style.display = "none";
-      console.log("click");
     });
 
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (this.validateForm(e)) {
-        console.log("Form submitted");
-        this.modal.style.display = "none";
         this.form.reset();
       } else {
         console.log("Form not valid");
@@ -35,39 +32,28 @@ class ContactForm {
   validateForm(e) {
     e.preventDefault();
     const firstNameInput = this.form.querySelector("input[name='firstname']");
-    const nameInput = this.form.querySelector("input[name='name']");
+    const lastNameInput = this.form.querySelector("input[name='lastname']");
     const emailInput = this.form.querySelector("input[name='email']");
     const messageInput = this.form.querySelector("textarea[name='message']");
     const emailRegex =
       /\A[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\z/;
     let isValid = true;
 
-    if (!firstNameInput.value.length < 2 || firstNameInput.value.trim()) {
-      isValid = false;
-      nameInput.classList.add("error");
-    } else {
-      nameInput.classList.remove("error");
-    }
-    if (!nameInput.value.length < 2) {
-      isValid = false;
-      nameInput.classList.add("error");
-    } else {
-      nameInput.classList.remove("error");
-    }
-    if (!emailRegex.test(emailInput.value)) {
-      isValid = false;
-      emailInput.classList.add("error");
-    } else {
-      emailInput.classList.remove("error");
-    }
-    if (!messageInput.value) {
-      isValid = false;
-      messageInput.classList.add("error");
-    } else {
-      messageInput.classList.remove("error");
-    }
+    const errorVerification = (condition) => {
+      if (!condition) {
+        isValid = false;
+      } else {
+        console.log("Envoyé");
+      }
+    };
+
+    errorVerification(firstNameInput, firstNameInput.value.trim().length < 2);
+    errorVerification(lastNameInput, lastNameInput.value.trim().length < 2);
+    errorVerification(emailInput, !emailRegex.test(emailInput.value));
+    errorVerification(messageInput, !messageInput.value.trim());
+
     if (isValid) {
-      console.log("Tout est ok ! :)");
+      console.log("Message envoyé");
     }
     return isValid;
   }
