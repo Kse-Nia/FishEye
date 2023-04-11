@@ -90,7 +90,22 @@ class Media {
       <img src="chemin/vers/image.jpg" alt="">
     </div>
   </div>`;
+    const boxContainer = document.createElement("div");
+    boxContainer.setAttribute("class", "lightbox__container");
+    boxContainer.innerHTML = lightbox;
+    document.body.appendChild(boxContainer);
 
-    this.$article.innerHTML = lightbox;
+    this.$article.addEventListener("click", (e) => {
+      e.preventDefault();
+      boxContainer.style.display = "none";
+      console.log("click");
+    });
+
+    boxContainer
+      .querySelector(".lightbox__close")
+      .addEventListener("click", () => {
+        boxContainer.classList.remove("lightbox__container");
+        boxContainer.innerHTML = "";
+      });
   }
 }

@@ -115,23 +115,9 @@ class PhotographerFactory {
     elements.forEach((element) => article.appendChild(element));
     profileContainer.appendChild(article);
 
-    // Modal Form
-    const form = document.querySelector("#contact-form");
-    const modal = document.querySelector(".modal");
+    // Contact form
     const openContact = document.querySelector(".profile-contact");
-    const closeBtn = document.querySelector(".close-btn");
-
-    openContact.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.style.display = "block"; // Make sure the form is displayed
-      console.log("click");
-    });
-
-    closeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.style.display = "none";
-      console.log("click");
-    });
+    new ContactForm(openContact);
 
     return article;
   }
