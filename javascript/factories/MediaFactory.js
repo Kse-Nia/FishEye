@@ -69,18 +69,6 @@ class Media {
     return this.$article;
   }
 
-  createMediaModal() {
-    this.$modalWrapper.addEventListener("click", () => {
-      this.$modalWrapper.classList.remove("modal-on");
-      this.$modalWrapper.innerHTML = "";
-    });
-  }
-
-  onClick() {
-    this.$modalWrapper.classList.add("modal-on");
-    this.$modalWrapper.appendChild(this.$wrapper);
-  }
-
   lightbox() {
     const lightbox = `<div class="lightbox">
     <button class="lightbox__close">Fermer</button>
