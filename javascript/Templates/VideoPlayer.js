@@ -1,11 +1,20 @@
 class VideoPlayer {
-  constructor(photographerId, video) {
+  constructor(data) {
+    const { id, photographerId, title, image, video, likes, date, price } =
+      data;
+    this.id = id;
     this.photographerId = photographerId;
-    this.video = `./assets/Media/${photographerId}/${video}`;
-    this.$wrapper = document.querySelector(".gallery-article");
+    this.video = video ? `./assets/Media/${photographerId}/${video}` : null;
+    this.$wrapper = document.createElement("div");
+    this.$modalWrapper = document.querySelector("#media");
+
+    console.log(this);
   }
-  onClose() {
-    this.$wrapper.querySelector;
+  onCloseButton() {
+    this.$wrapper.querySelector(".close-btn").addEventListener("click", () => {
+      this.$modalWrapper.classList.remove("modal-on");
+      this.$wrapper.innerHTML = "";
+    });
   }
   createPlayer() {
     const player = `

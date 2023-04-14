@@ -11,7 +11,6 @@ class ProxyRatingSorter {
     }
 
     const data = await sorterApi.sorter(media, orderBy);
-
     this.cache.push(data);
     return data;
   }

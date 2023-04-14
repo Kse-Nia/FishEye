@@ -32,7 +32,7 @@ class Media {
 
     if (this.video) {
       let video = document.createElement("video");
-      video.setAttribute("class", "player");
+      video.setAttribute("class", "article_player");
       video.setAttribute("src", this.video);
       video.setAttribute("height", "300");
       video.setAttribute("width", "300");

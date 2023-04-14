@@ -4,7 +4,6 @@ class ContactForm {
     this.modal = document.querySelector(".modal");
     this.openContact = openContact;
     this.closeBtn = document.querySelector(".close-btn");
-    console.log("ok", this.form);
     this.init(); // initialization
   }
 

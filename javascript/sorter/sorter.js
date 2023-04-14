@@ -1,4 +1,4 @@
-class sorterApi {
+class SorterApi {
   static async sorter(data, orderBy) {
     const { id, photographerId, title, image, video, likes, date, price } =
       data;
@@ -15,6 +15,18 @@ class sorterApi {
             ),
           };
 
+          resolve(result);
+        }, 1000);
+      });
+    } else if (orderBy === "date") {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const result = {
+            key: orderBy,
+            data: Array.from(data).sort(
+              (a, b) => b.released_in - a.released_in
+            ),
+          };
           resolve(result);
         }, 1000);
       });
