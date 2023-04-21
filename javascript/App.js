@@ -1,19 +1,3 @@
-/* export function createElements(tag, attributes = {}, textContent = "") {
-  // Create tag element + add attributes
-  const element = document.createElement(tag);
-  for (const [key, value] of Object.entries(attributes)) {
-    element.setAttribute(key, value);
-  }
-  element.textContent = textContent;
-  return element;
-}
-
-export function createElementsContent(tag, attributes, content) {
-  const element = createElements(tag, attributes);
-  element.textContent = content;
-  return element;
-} */
-
 async function getPhotographers() {
   try {
     const response = await fetch("/data/photographers.json", {
@@ -61,14 +45,6 @@ async function displayGallery(media) {
   const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
   const galleryContainer = document.createElement("div");
   galleryContainer.setAttribute("class", "gallery_container");
-  /* 
-  media
-    .filter((item) => item.photographerId == id)
-    .forEach((item) => {
-      const mediaGallery = new Media(item);
-      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
-      galleryContainer.appendChild(mediaArticleDom);
-    }); */
 
   media
     .filter((item) => item.photographerId == id)
@@ -93,6 +69,31 @@ async function init() {
   if (media) {
     displayGallery(media);
   }
+
+  // Filter
+  const filterAdapter = new FilterAdapter(media, id);
+
+  const filterDOM = filterAdapter.getFilterDOM();
+  document.querySelector(".filter_container").appendChild(filterDOM);
+
+  document
+    .querySelector("#sort-options")
+    .addEventListener("change", (event) => {
+      switch (event.target.value) {
+        case "popularity":
+          filterAdapter.filterByPopularity();
+          break;
+        case "date":
+          filterAdapter.filterByDate();
+          break;
+        case "title":
+          filterAdapter.filterByTitle();
+          break;
+        default:
+          filterAdapter.filterByTitle();
+          break;
+      }
+    });
 }
 
 init();
