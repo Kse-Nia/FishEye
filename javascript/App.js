@@ -65,35 +65,33 @@ async function init() {
   } else if (photographers) {
     displayData(photographers);
   }
-
   if (media) {
     displayGallery(media);
+    const filterAdapter = new FilterAdapter(media, id);
+    const filterDOM = filterAdapter.getFilterDOM();
+    document.querySelector(".filter_container").appendChild(filterDOM);
+
+    document
+      .querySelector("#sort-options")
+      .addEventListener("change", (event) => {
+        console.log("target", event.target.value);
+        switch (event.target.value) {
+          case "popularity":
+            filterAdapter.filterByPopularity();
+            break;
+          case "date":
+            filterAdapter.filterByDate();
+            break;
+          case "title":
+            filterAdapter.filterByTitle();
+            break;
+          default:
+            filterAdapter.filterByTitle();
+            break;
+        }
+        console.log(event.target.value);
+      });
   }
-
-  // Filter
-  const filterAdapter = new FilterAdapter(media, id);
-
-  const filterDOM = filterAdapter.getFilterDOM();
-  document.querySelector(".filter_container").appendChild(filterDOM);
-
-  document
-    .querySelector("#sort-options")
-    .addEventListener("change", (event) => {
-      switch (event.target.value) {
-        case "popularity":
-          filterAdapter.filterByPopularity();
-          break;
-        case "date":
-          filterAdapter.filterByDate();
-          break;
-        case "title":
-          filterAdapter.filterByTitle();
-          break;
-        default:
-          filterAdapter.filterByTitle();
-          break;
-      }
-    });
 }
 
 init();
