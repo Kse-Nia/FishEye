@@ -40,11 +40,11 @@ async function displayProfile(id) {
 }
 
 // Galery
-async function displayGallery(media) {
+/* async function displayGallery(media) {
   const main = document.querySelector("#main");
   const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
   const galleryContainer = document.createElement("div");
-  galleryContainer.setAttribute("class", "gallery_container");
+  galleryContainer.classList.add("gallery_container");
 
   media
     .filter((item) => item.photographerId == id)
@@ -54,12 +54,65 @@ async function displayGallery(media) {
       galleryContainer.appendChild(mediaArticleDom);
     });
   main.appendChild(galleryContainer);
+} */
+
+/* async function displayGallery(media) {
+  const main = document.querySelector("#main");
+  const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
+  const galleryContainer = document.createElement("div");
+  galleryContainer.classList.add("gallery_container");
+  media
+    .filter((item) => item.photographerId == id)
+    .forEach((item, index) => {
+      const mediaGallery = MediaFactory.createMedia(item);
+      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
+      galleryContainer.appendChild(mediaArticleDom);
+      // Event
+      mediaArticleDom.addEventListener("click", () => {
+        openLightbox(media, index);
+      });
+    });
+  main.appendChild(galleryContainer);
+} */
+
+function displayGallery(media) {
+  const main = document.querySelector("#main");
+  const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
+  const galleryContainer = document.createElement("div");
+  galleryContainer.classList.add("gallery_container");
+
+  media
+    .filter((item) => item.photographerId == id)
+    .forEach((item, index) => {
+      const mediaGallery = MediaFactory.createMedia(item);
+      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
+      mediaArticleDom.setAttribute("data-index", index);
+
+      galleryContainer.appendChild(mediaArticleDom);
+      mediaArticleDom.addEventListener("click", () => {
+        openLightbox(media, index);
+      });
+    });
+
+  main.appendChild(galleryContainer);
+}
+
+function openLightbox(media, currentMediaIndex) {
+  const lightbox = new LightboxFactory(media, currentMediaIndex);
+  const lightboxMedia = lightbox.createLightboxMedia();
+  const lightboxMediaName = lightbox.createLightboxMediaName();
+
+  lightboxMedia.appendChild(lightboxMediaName);
+  lightboxMedia.classList.add("active"); // Display Lightbox
+
+  const main = document.querySelector("#main");
+  main.appendChild(lightboxMedia);
+  console.log("app.js box container", lightboxMedia);
 }
 
 async function init() {
   const { photographers, media } = await getPhotographers();
   const id = new URLSearchParams(window.location.search).get("id");
-
   if (id) {
     displayProfile(id);
   } else if (photographers) {
@@ -70,27 +123,6 @@ async function init() {
     const filterAdapter = new FilterAdapter(media, id);
     const filterDOM = filterAdapter.getFilterDOM();
     document.querySelector(".filter_container").appendChild(filterDOM);
-
-    document
-      .querySelector("#sort-options")
-      .addEventListener("change", (event) => {
-        console.log("target", event.target.value);
-        switch (event.target.value) {
-          case "popularity":
-            filterAdapter.filterByPopularity();
-            break;
-          case "date":
-            filterAdapter.filterByDate();
-            break;
-          case "title":
-            filterAdapter.filterByTitle();
-            break;
-          default:
-            filterAdapter.filterByTitle();
-            break;
-        }
-        console.log(event.target.value);
-      });
   }
 }
 

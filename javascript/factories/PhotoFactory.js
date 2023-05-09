@@ -29,10 +29,9 @@ class PhotographerFactory {
     this.picture = `./assets/Media/Portraits/${portrait}`;
   }
   getUsersCardDOM() {
-    const article = createElements("article", {
-      class: "photographer-article",
-      "data-id": this.id,
-    });
+    const article = document.createElement("article");
+    article.classList.add("photographer-article");
+    article.setAttribute("data-id", this.id);
     const elements = [
       createElements("img", {
         src: this.picture,
