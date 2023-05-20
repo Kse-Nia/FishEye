@@ -55,7 +55,7 @@ function displayGallery(media) {
 
     galleryContainer.appendChild(mediaArticleDom);
     mediaArticleDom.addEventListener("click", () => {
-      openLightbox(filteredMedia, index); // pass filteredMedia instead of media
+      openLightbox(filteredMedia, index);
     });
   });
 
@@ -63,10 +63,10 @@ function displayGallery(media) {
 }
 
 function openLightbox(media, currentMediaIndex) {
-  const lightbox = new Lightbox(media);
-  lightbox.currentIndex = currentMediaIndex; // Clicked index Media
-  lightbox.open();
   console.log(currentMediaIndex);
+  const lightbox = new Lightbox(media, currentMediaIndex);
+  lightbox.currentIndex = currentMediaIndex;
+  lightbox.openBox();
 }
 
 async function init() {
