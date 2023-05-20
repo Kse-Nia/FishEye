@@ -12,12 +12,10 @@ class ContactForm {
       e.preventDefault();
       this.modal.style.display = "block";
     });
-
     this.closeBtn.addEventListener("click", (e) => {
       e.preventDefault();
       this.modal.style.display = "none";
     });
-
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (this.validateForm(e)) {
@@ -27,7 +25,6 @@ class ContactForm {
       }
     });
   }
-
   validateForm(e) {
     e.preventDefault();
     const firstNameInput = this.form.querySelector("input[name='firstname']");
@@ -46,7 +43,6 @@ class ContactForm {
         console.log("Envoyé");
       }
     };
-
     errorVerification(firstNameInput, firstNameInput.value.trim().length < 2);
     errorVerification(lastNameInput, lastNameInput.value.trim().length < 2);
     errorVerification(emailInput, !emailRegex.test(emailInput.value));

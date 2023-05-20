@@ -30,6 +30,7 @@ class FilterAdapter {
       </div>
     </div>
   </div>  
+  
   `;
 
     this.$wrapper.innerHTML = filter;

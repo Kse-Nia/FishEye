@@ -35,7 +35,7 @@ class MediaImage extends Media {
 
     let picture = document.createElement("img");
     picture.setAttribute("class", "gallery-article_picture media media-item");
-    picture.setAttribute("data-index", this.currentMediaIndex); // Index Lightbox
+    picture.setAttribute("data-index", this.currentMediaIndex); // Index for Lightbox
     picture.setAttribute("aria-label", "Photo");
     picture.setAttribute("src", this.image);
     article.appendChild(picture);
@@ -82,7 +82,6 @@ class MediaVideo extends Media {
     video.controls = true;
     video.muted = true;
     article.appendChild(video);
-
     article.setAttribute("class", "article");
     description.setAttribute("class", "gallery-article_description");
     title.setAttribute("class", "gallery-article_title");
@@ -103,18 +102,6 @@ class MediaVideo extends Media {
     return this.$article;
   }
 }
-
-function attachClickHandlers(media) {
-  const mediaItems = document.querySelectorAll(".media-item");
-  mediaItems.forEach((mediaItem) => {
-    mediaItem.addEventListener("click", () => {
-      const index = mediaItem.getAttribute("data-index");
-      openLightbox(media, index);
-      console.log(index);
-    });
-  });
-}
-
 class MediaFactory {
   static createMedia(data) {
     if (data.image) {

@@ -40,74 +40,33 @@ async function displayProfile(id) {
 }
 
 // Galery
-/* async function displayGallery(media) {
-  const main = document.querySelector("#main");
-  const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
-  const galleryContainer = document.createElement("div");
-  galleryContainer.classList.add("gallery_container");
-
-  media
-    .filter((item) => item.photographerId == id)
-    .forEach((item) => {
-      const mediaGallery = MediaFactory.createMedia(item);
-      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
-      galleryContainer.appendChild(mediaArticleDom);
-    });
-  main.appendChild(galleryContainer);
-} */
-
-/* async function displayGallery(media) {
-  const main = document.querySelector("#main");
-  const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
-  const galleryContainer = document.createElement("div");
-  galleryContainer.classList.add("gallery_container");
-  media
-    .filter((item) => item.photographerId == id)
-    .forEach((item, index) => {
-      const mediaGallery = MediaFactory.createMedia(item);
-      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
-      galleryContainer.appendChild(mediaArticleDom);
-      // Event
-      mediaArticleDom.addEventListener("click", () => {
-        openLightbox(media, index);
-      });
-    });
-  main.appendChild(galleryContainer);
-} */
-
 function displayGallery(media) {
   const main = document.querySelector("#main");
   const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
   const galleryContainer = document.createElement("div");
   galleryContainer.classList.add("gallery_container");
 
-  media
-    .filter((item) => item.photographerId == id)
-    .forEach((item, index) => {
-      const mediaGallery = MediaFactory.createMedia(item);
-      const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
-      mediaArticleDom.setAttribute("data-index", index);
+  const filteredMedia = media.filter((item) => item.photographerId == id); // Filter media by photographerId
 
-      galleryContainer.appendChild(mediaArticleDom);
-      mediaArticleDom.addEventListener("click", () => {
-        openLightbox(media, index);
-      });
+  filteredMedia.forEach((item, index) => {
+    const mediaGallery = MediaFactory.createMedia(item);
+    const mediaArticleDom = mediaGallery.getGalleryDOM(galleryContainer);
+    mediaArticleDom.setAttribute("data-index", index);
+
+    galleryContainer.appendChild(mediaArticleDom);
+    mediaArticleDom.addEventListener("click", () => {
+      openLightbox(filteredMedia, index); // pass filteredMedia instead of media
     });
+  });
 
   main.appendChild(galleryContainer);
 }
 
 function openLightbox(media, currentMediaIndex) {
-  const lightbox = new LightboxFactory(media, currentMediaIndex);
-  const lightboxMedia = lightbox.createLightboxMedia();
-  const lightboxMediaName = lightbox.createLightboxMediaName();
-
-  lightboxMedia.appendChild(lightboxMediaName);
-  lightboxMedia.classList.add("active"); // Display Lightbox
-
-  const main = document.querySelector("#main");
-  main.appendChild(lightboxMedia);
-  console.log("app.js box container", lightboxMedia);
+  const lightbox = new Lightbox(media);
+  lightbox.currentIndex = currentMediaIndex; // Clicked index Media
+  lightbox.open();
+  console.log(currentMediaIndex);
 }
 
 async function init() {
