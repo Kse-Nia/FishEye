@@ -33,8 +33,8 @@ async function displayProfile(id) {
   const data = await response.json();
   const photographers = data.photographers;
   const profile = photographers.find((photographer) => photographer.id == id);
-  const photographerProfile = new PhotographerFactory(profile); // Use the same class
-  const profileDOM = photographerProfile.getProfileDOM(); // Call the getProfileDOM() method
+  const photographerProfile = new PhotographerFactory(profile);
+  const profileDOM = photographerProfile.getProfileDOM();
   const profileContainer = document.querySelector(".profile_container");
   profileContainer.appendChild(profileDOM);
 }
@@ -65,7 +65,6 @@ function displayGallery(media) {
 function openLightbox(media, currentMediaIndex) {
   console.log(currentMediaIndex);
   const lightbox = new Lightbox(media, currentMediaIndex);
-  lightbox.currentIndex = currentMediaIndex;
   lightbox.openBox();
 }
 

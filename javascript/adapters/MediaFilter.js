@@ -7,14 +7,11 @@ class FilterAdapter {
     this.$wrapper.setAttribute("class", "filter-wrapper");
     this.$galleryWrapper = document.querySelector(".gallery_container");
   }
-
   get photographerId() {
     return new URLSearchParams(window.location.search).get("id");
   }
-
   getFilterDOM() {
     const filter = `
-    <div class="filter-wrapper">
     <div class="dropMenu">
       <label class="dropMenu_label" for="sort-options">Trier par:</label>
       <div class="option-wrapper">
@@ -29,8 +26,6 @@ class FilterAdapter {
         </div>
       </div>
     </div>
-  </div>  
-  
   `;
 
     this.$wrapper.innerHTML = filter;
@@ -45,7 +40,6 @@ class FilterAdapter {
         this.sortList(button.value);
       });
     });
-
     return this.$wrapper;
   }
 
@@ -69,7 +63,6 @@ class FilterAdapter {
         return (a, b) => b.likes - a.likes;
     }
   }
-
   updateGallery(mediaSorted) {
     this.$galleryWrapper.innerHTML = "";
     mediaSorted.forEach((item) => {
