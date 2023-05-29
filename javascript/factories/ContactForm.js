@@ -1,16 +1,38 @@
 class ContactForm {
-  constructor(openContact) {
+  constructor(openContact, profileName) {
     this.form = document.querySelector("#contact-form");
     this.modal = document.querySelector(".modal");
     this.openContact = openContact;
     this.closeBtn = document.querySelector(".close-btn");
-    this.init(); // initialization
+    this.profileName = profileName;
+    this.init();
   }
 
   init() {
+    // Accessibility part
+    this.openContact.setAttribute("tabindex", "0");
+    this.closeBtn.setAttribute("tabindex", "0");
+
+    this.openContact.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        this.modal.style.display = "block";
+        this.profileName();
+        console.log("open with key");
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" || e.key === "Esc" || e.key === 27) {
+        e.preventDefault();
+        this.modal.style.display = "none";
+      }
+    });
+
     this.openContact.addEventListener("click", (e) => {
       e.preventDefault();
       this.modal.style.display = "block";
+      this.photographName();
     });
     this.closeBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -24,6 +46,11 @@ class ContactForm {
         console.log("Form not valid");
       }
     });
+  }
+  photographName() {
+    const photographerName = document.querySelector(".contact-name");
+    photographerName.textContent = this.profileName;
+    console.log("contact-name", photographerName);
   }
   validateForm(e) {
     e.preventDefault();
@@ -41,12 +68,13 @@ class ContactForm {
         isValid = false;
       } else {
         console.log("Envoyé");
+        throw new Error("Le formulaire n'est pas valide");
       }
     };
     errorVerification(firstNameInput, firstNameInput.value.trim().length < 2);
     errorVerification(lastNameInput, lastNameInput.value.trim().length < 2);
     errorVerification(emailInput, !emailRegex.test(emailInput.value));
-    errorVerification(messageInput, !messageInput.value.trim());
+    errorVerification(messageInput, !messageInput.value.trim().length < 5);
 
     if (isValid) {
       console.log("Message envoyé");
