@@ -1,7 +1,9 @@
+/* exported FilterAdapter */
 class FilterAdapter {
-  constructor(Media, photographerId) {
+  constructor(Media, photographerId, openLightbox) {
     this.Media = Media;
     this._photographerId = photographerId;
+    this.openLightbox = openLightbox;
     this.$filterWrapper = document.querySelector(".filter_container");
     this.$wrapper = document.createElement("div");
     this.$wrapper.setAttribute("class", "filter-wrapper");
@@ -65,9 +67,15 @@ class FilterAdapter {
   }
   updateGallery(mediaSorted) {
     this.$galleryWrapper.innerHTML = "";
-    mediaSorted.forEach((item) => {
+    mediaSorted.forEach((item, index) => {
       const mediaGallery = MediaFactory.createMedia(item);
       const mediaArticleDom = mediaGallery.getGalleryDOM();
+
+      mediaArticleDom.setAttribute("data-index", index);
+      mediaArticleDom.addEventListener("click", () => {
+        this.openLightbox(mediaSorted, index);
+      });
+
       this.$galleryWrapper.appendChild(mediaArticleDom);
     });
   }
