@@ -1,21 +1,3 @@
-// Create DOM elements
-function createElements(tag, attributes = {}, textContent = "") {
-  // Create tag element + add attributes
-  const element = document.createElement(tag);
-  for (const [key, value] of Object.entries(attributes)) {
-    element.setAttribute(key, value);
-  }
-  element.textContent = textContent;
-  return element;
-}
-
-function createElementsContent(tag, attributes, content) {
-  const element = createElements(tag, attributes);
-  element.textContent = content;
-  return element;
-}
-
-// Photographer factory, create DOM
 class PhotographerFactory {
   constructor(data) {
     const { id, name, portrait, city, country, tagline, price } = data;
@@ -31,92 +13,94 @@ class PhotographerFactory {
   getUsersCardDOM() {
     const article = document.createElement("article");
     article.classList.add("photographer-article");
-    article.setAttribute("data-id", this.id);
-    const elements = [
-      createElements("img", {
-        src: this.picture,
-        alt: this.name,
-        class: "photographer-portrait",
-        ariaLabel: "Photographer portrait",
-      }),
-      createElementsContent("h2", { class: "photographer-name" }, this.name),
-      createElementsContent(
-        "p",
-        { class: "photographer-localisation" },
-        `${this.city}, ${this.country}`
-      ),
-      createElementsContent(
-        "p",
-        { class: "photographer-tagline" },
-        this.tagline
-      ),
-      createElementsContent(
-        "p",
-        { class: "photographer-price" },
-        `${this.price}€/jour`
-      ),
-    ];
+    article.dataset.id = this.id;
+
+    const img = document.createElement("img");
+    img.src = this.picture;
+    img.alt = this.name;
+    img.classList.add("photographer-portrait");
+    img.setAttribute("aria-label", "Photographer portrait");
+
+    const h2 = document.createElement("h2");
+    h2.classList.add("photographer-name");
+    h2.textContent = this.name;
+
+    const p1 = document.createElement("p");
+    p1.classList.add("photographer-localisation");
+    p1.textContent = `${this.city}, ${this.country}`;
+
+    const p2 = document.createElement("p");
+    p2.classList.add("photographer-tagline");
+    p2.textContent = this.tagline;
+
+    const p3 = document.createElement("p");
+    p3.classList.add("photographer-price");
+    p3.textContent = `${this.price}€/jour`;
+
+    article.appendChild(img);
+    article.appendChild(h2);
+    article.appendChild(p1);
+    article.appendChild(p2);
+    article.appendChild(p3);
+
     article.addEventListener("click", () => {
       const photographId = article.dataset.id;
       window.location.href = `./photographer.html?id=${photographId}`;
       console.log(photographId);
     });
-    elements.forEach((element) => article.appendChild(element));
+
     return article;
   }
 
   getProfileDOM() {
-    const urlParams = new URLSearchParams(window.location.search); // Get url parameters
-    const id = urlParams.get("id"); // Get photographer id
+    /*  const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id"); */
 
     const profileContainer = document.querySelector(".profile_container");
-    const article = createElements("article", {
-      class: "profile-article",
-    });
-    const profileDetailsDiv = createElements("div", {
-      class: "profile-details",
-    });
 
-    const elements = [
-      createElements("img", {
-        src: this.picture,
-        alt: this.name,
-        class: "photographer-portrait",
-        ariaLabel: "Photographer portrait",
-      }),
-      profileDetailsDiv,
-    ];
-    const modalElements = [
-      createElementsContent(
-        "button",
-        { class: "profile-contact", type: "button" },
-        "Contactez-moi"
-      ),
-    ];
-    const detailsElements = [
-      createElementsContent("h1", { class: "photographer-name" }, this.name),
-      createElementsContent(
-        "p",
-        { class: "photographer-localisation" },
-        `${this.city}, ${this.country}`
-      ),
-      createElementsContent(
-        "p",
-        { class: "photographer-tagline" },
-        this.tagline
-      ),
-    ];
-    detailsElements.forEach((element) =>
-      profileDetailsDiv.appendChild(element)
-    );
+    const article = document.createElement("article");
+    article.classList.add("profile-article");
 
-    modalElements.forEach((element) => article.appendChild(element));
-    elements.forEach((element) => article.appendChild(element));
+    const profileDetailsDiv = document.createElement("div");
+    profileDetailsDiv.classList.add("profile-details");
+
+    const img = document.createElement("img");
+    img.src = this.picture;
+    img.alt = this.name;
+    img.classList.add("photographer-portrait");
+    img.setAttribute("aria-label", "Photographer portrait");
+
+    const h1 = document.createElement("h1");
+    h1.classList.add("photographer-name");
+    h1.textContent = this.name;
+
+    const p1 = document.createElement("p");
+    p1.classList.add("photographer-localisation");
+    p1.textContent = `${this.city}, ${this.country}`;
+
+    const p2 = document.createElement("p");
+    p2.classList.add("photographer-tagline");
+    p2.textContent = this.tagline;
+
+    const button = document.createElement("button");
+    button.classList.add("profile-contact");
+    button.type = "button";
+    button.textContent = "Contactez-moi";
+
+    profileDetailsDiv.appendChild(h1);
+    profileDetailsDiv.appendChild(p1);
+    profileDetailsDiv.appendChild(p2);
+    article.appendChild(img);
+    article.appendChild(profileDetailsDiv);
+    article.appendChild(button);
+
     profileContainer.appendChild(article);
 
     // Contact form
     const openContact = document.querySelector(".profile-contact");
-    const _ = new ContactForm(openContact);
+    const profileName = this.name;
+    const _ = new ContactForm(openContact, profileName);
+
     return article;
   }
 }

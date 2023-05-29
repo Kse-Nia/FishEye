@@ -37,6 +37,7 @@ class MediaImage extends Media {
     picture.setAttribute("class", "gallery-article_picture media media-item");
     picture.setAttribute("data-index", this.currentMediaIndex); // Index for Lightbox
     picture.setAttribute("aria-label", "Photo");
+    picture.setAttribute("alt", this.title);
     picture.setAttribute("src", this.image);
     article.appendChild(picture);
 
