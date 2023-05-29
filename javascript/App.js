@@ -63,7 +63,6 @@ function displayGallery(media) {
 }
 
 function openLightbox(media, currentMediaIndex) {
-  console.log(currentMediaIndex);
   const lightbox = new Lightbox(media, currentMediaIndex);
   lightbox.openBox();
 }
@@ -78,7 +77,7 @@ async function init() {
   }
   if (media) {
     displayGallery(media);
-    const filterAdapter = new FilterAdapter(media, id);
+    const filterAdapter = new FilterAdapter(media, id, openLightbox);
     const filterDOM = filterAdapter.getFilterDOM();
     document.querySelector(".filter_container").appendChild(filterDOM);
   }
