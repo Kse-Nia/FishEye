@@ -33,7 +33,7 @@
     <main id="main">
       <div class="photograph-header"></div>
       <div class="profile_container"></div>
-      <div class="filter_container"></div>
+      <section class="filter_container"></section>
     </main>
     <div id="contact_modal">
       <div class="modal modal-container" role="dialog" aria-hidden="true">
@@ -44,6 +44,7 @@
           </div>
           <button
             class="Close close-btn Contact form modal_header_closeBtn"
+            aria-label="Close Contact form"
           ></button>
         </header>
         <div id="media"></div>
@@ -100,11 +101,12 @@
         </div>
       </div>
     </div>
-    <script src="javascript/factories/PhotoFactory.js"></script>
-    <script src="javascript/factories/MediaFactory.js"></script>
+    <script src="javascript/factory/PhotoFactory.js"></script>
+    <script src="javascript/factory/MediaFactory.js"></script>
     <script src="javascript/adapters/MediaFilter.js"></script>
-    <script src="javascript/factories/Lightbox.js"></script>
-    <script src="javascript/factories/ContactForm.js"></script>
+    <script src="javascript/factory/Lightbox.js"></script>
+    <script src="javascript/ContactForm.js"></script>
+    <script src="javascript/likesModal.js"></script>
     <script src="./javascript/App.js" type="module"></script>
   </body>
 </html>
