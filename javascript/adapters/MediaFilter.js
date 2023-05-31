@@ -15,8 +15,8 @@ class FilterAdapter {
   getFilterDOM() {
     const filter = `
     <div class="dropMenu">
-      <label class="dropMenu_label" for="sort-options">Trier par:</label>
-      <div class="option-wrapper">
+        <span id="sort-options" class="dropMenu_label">Trier par:</span>
+        <div class="option-wrapper" aria-labelledby="sort-options">
         <div class="selected-option-wrapper">
           <div class="selected-option" data-value="popularity">Popularité</div>
           <i class="fa fa-solid fa-chevron-up"></i>
