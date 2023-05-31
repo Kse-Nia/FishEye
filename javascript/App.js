@@ -43,7 +43,7 @@ async function displayProfile(id) {
 function displayGallery(media) {
   const main = document.querySelector("#main");
   const id = new URLSearchParams(window.location.search).get("id"); // Photographer Id
-  const galleryContainer = document.createElement("div");
+  const galleryContainer = document.createElement("section");
   galleryContainer.classList.add("gallery_container");
 
   const filteredMedia = media.filter((item) => item.photographerId == id); // Filter media by photographerId
@@ -77,9 +77,12 @@ async function init() {
   }
   if (media) {
     displayGallery(media);
-    const filterAdapter = new FilterAdapter(media, id, openLightbox);
-    const filterDOM = filterAdapter.getFilterDOM();
-    document.querySelector(".filter_container").appendChild(filterDOM);
+    const filterContainer = document.querySelector(".filter_container");
+    if (filterContainer) {
+      const filterAdapter = new FilterAdapter(media, id, openLightbox);
+      const filterDOM = filterAdapter.getFilterDOM();
+      filterContainer.appendChild(filterDOM);
+    }
   }
 }
 
