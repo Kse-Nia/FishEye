@@ -187,6 +187,7 @@
   flex-direction: row;
   &_container {
     margin: auto;
+    padding: 0 2% 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -204,7 +205,6 @@
     margin: 1% 0 1%;
     width: 350px;
     color: $h1;
-    // flex: 1 1 350px;
     flex-direction: column;
     text-align: center;
     &_picture {
@@ -216,7 +216,6 @@
       background-color: #ffffff;
       height: auto;
       display: flex;
-      //margin: 2% auto 2%;
       margin: 2% 0 0 0;
       padding: 0 5% 0;
       flex-direction: row;
@@ -376,5 +375,30 @@
     width: 3vw;
     height: auto;
     margin: 0 0 26vh 2%;
+  }
+}
+
+// Likes modal
+
+.likes-modal-content {
+  position: fixed;
+  width: 375px;
+  height: auto;
+  min-height: 60px;
+  padding: 0 5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  border-radius: 5px 5px 0 0;
+  background-color: $background;
+  font-size: 1.5em;
+  &_text {
+    .likes-container {
+      display: flex;
+      align-items: center;
+    }
   }
 }

@@ -83,6 +83,14 @@ async function init() {
       const filterDOM = filterAdapter.getFilterDOM();
       filterContainer.appendChild(filterDOM);
     }
+
+    const photographer = photographers.find((p) => p.id == id);
+    const likesModalInstance = new LikesModal(
+      photographer,
+      media.filter((m) => m.photographerId == id)
+    );
+    const likesModal = likesModalInstance.createLikesModal();
+    document.body.appendChild(likesModal);
   }
 }
 
