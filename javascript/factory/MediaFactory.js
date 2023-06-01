@@ -5,6 +5,7 @@ class Media {
     this.photographerId = photographerId;
     this.title = title;
     this.likes = likes;
+    this.liked = false; // default liked value
     this.date = date;
     this.price = price;
     this.currentMediaIndex = currentMediaIndex; // Index pour Lightbox
@@ -17,6 +18,15 @@ class Media {
     this.$galleryContainer.setAttribute("data-id", this.id);
     this.$article.classList.add("gallery-article");
     this.$modalWrapper.classList.add("modal-wrapper");
+  }
+  addLikeButton(likesElement, iconElement) {
+    iconElement.addEventListener("click", () => {
+      if (!this.liked) {
+        this.likes++;
+        likesElement.textContent = this.likes;
+        this.liked = true;
+      }
+    });
   }
 }
 
@@ -51,6 +61,7 @@ class MediaImage extends Media {
 
     title.textContent = this.title;
     likes.textContent = this.likes;
+    this.addLikeButton(likes, icon);
 
     description.appendChild(title);
     description.appendChild(likesContainer);
@@ -78,10 +89,13 @@ class MediaVideo extends Media {
     let video = document.createElement("video");
     video.setAttribute("class", "article_player media");
     video.setAttribute("src", this.video);
+    video.setAttribute("alt", this.title);
     video.setAttribute("height", "300");
     video.setAttribute("width", "300");
+    video.setAttribute("data-index", this.currentMediaIndex);
     video.controls = true;
     video.muted = true;
+
     article.appendChild(video);
     article.setAttribute("class", "article");
     description.setAttribute("class", "gallery-article_description");
@@ -90,6 +104,7 @@ class MediaVideo extends Media {
     likesContainer.setAttribute("class", "gallery-article_likescontainer");
     likes.setAttribute("class", "gallery-article_likes");
     icon.setAttribute("class", "fa-solid fa-heart");
+    this.addLikeButton(likes, icon);
 
     title.textContent = this.title;
     likes.textContent = this.likes;
@@ -112,5 +127,16 @@ class MediaFactory {
     } else {
       throw new Error("Error, aucun media ou media non reconnu");
     }
+  }
+}
+
+class MediaLikes extends Media {
+  constructor(data) {
+    super(data);
+    this.likesBtn = document.querySelector(".fa-heart");
+  }
+  addLike() {
+    this.likes++;
+    this.$likes.textContent = this.likes;
   }
 }

@@ -53,9 +53,6 @@ class PhotographerFactory {
   }
 
   getProfileDOM() {
-    /*  const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id"); */
-
     const profileContainer = document.querySelector(".profile_container");
 
     const article = document.createElement("article");

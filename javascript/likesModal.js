@@ -6,10 +6,7 @@ class LikesModal {
       (totalLikes, currentMedia) => totalLikes + currentMedia.likes,
       0
     );
-    console.log("total likes", this.likes);
-    console.log("photographer price", this.price);
   }
-
   createLikesModal() {
     const likesModal = document.createElement("div");
     likesModal.classList.add("likes-modal");

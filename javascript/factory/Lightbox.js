@@ -61,6 +61,8 @@ class Lightbox {
       mediaElement = document.createElement("iframe");
       mediaElement.src = `./assets/Media/${mediaItem.photographerId}/${mediaItem.video}`;
       mediaElement.setAttribute("controls", true);
+      mediaElement.setAttribute("allowfullscreen", true);
+
       mediaElement.classList.add("lightbox__video");
     } else {
       mediaElement = document.createElement("img");

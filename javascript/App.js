@@ -54,7 +54,10 @@ function displayGallery(media) {
     mediaArticleDom.setAttribute("data-index", index);
 
     galleryContainer.appendChild(mediaArticleDom);
-    mediaArticleDom.addEventListener("click", () => {
+    const mediaElement = mediaArticleDom.querySelector(
+      ".gallery-article_picture.media.media-item, .article_player.media"
+    );
+    mediaElement.addEventListener("click", function () {
       openLightbox(filteredMedia, index);
     });
   });
