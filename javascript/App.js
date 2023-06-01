@@ -87,13 +87,18 @@ async function init() {
       filterContainer.appendChild(filterDOM);
     }
 
-    const photographer = photographers.find((p) => p.id == id);
-    const likesModalInstance = new LikesModal(
-      photographer,
-      media.filter((m) => m.photographerId == id)
-    );
-    const likesModal = likesModalInstance.createLikesModal();
-    document.body.appendChild(likesModal);
+    // Likes Modal only if photographer profile
+    if (id && photographers) {
+      const photographer = photographers.find((p) => p.id == id);
+      if (photographer) {
+        const likesModalInstance = new LikesModal(
+          photographer,
+          media.filter((m) => m.photographerId == id)
+        );
+        const likesModal = likesModalInstance.createLikesModal();
+        document.body.appendChild(likesModal);
+      }
+    }
   }
 }
 
