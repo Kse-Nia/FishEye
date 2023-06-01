@@ -335,6 +335,11 @@ h1 {
   cursor: pointer;
 }
 
+.dropMenu:hover .fa-chevron-up {
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(180deg);
+}
+
 .dropMenu-options button:nth-child(1) {
   border-bottom: 1px solid #ffffff;
 }
