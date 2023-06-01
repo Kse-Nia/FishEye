@@ -22,7 +22,7 @@ class FilterAdapter {
           <i class="fa fa-solid fa-chevron-up"></i>
         </div>
         <div class="dropMenu-options">
-          <button type="button" value="popularity">Popularité</button>
+          <button type="button" role="button" value="popularity">Popularité</button>
           <button type="button" value="date">Date</button>
           <button type="button" value="title">Titre</button>
         </div>

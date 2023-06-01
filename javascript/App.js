@@ -60,6 +60,15 @@ function displayGallery(media) {
     mediaElement.addEventListener("click", function () {
       openLightbox(filteredMedia, index);
     });
+
+    // Accessibility
+    mediaElement.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        if (document.activeElement === mediaElement) {
+          openLightbox(filteredMedia, index);
+        }
+      }
+    });
   });
 
   main.appendChild(galleryContainer);
