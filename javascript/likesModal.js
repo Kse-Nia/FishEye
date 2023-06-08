@@ -2,11 +2,22 @@ class LikesModal {
   constructor(photographer, media) {
     this.photographer = photographer;
     this.price = photographer.price;
+    this.likesListen();
     this.likes = media.reduce(
       (totalLikes, currentMedia) => totalLikes + currentMedia.likes,
       0
     );
   }
+  likesListen() {
+    window.addEventListener("like", () => {
+      this.likes++;
+      this.updateLikesModal();
+    });
+  }
+  updateLikesModal = () => {
+    const likesModal = document.querySelector(".likes-modal");
+    likesModal.querySelector(".likes-container span").textContent = this.likes;
+  };
   createLikesModal() {
     const likesModal = document.createElement("div");
     likesModal.classList.add("likes-modal");

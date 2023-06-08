@@ -18,6 +18,7 @@ class PhotographerFactory {
     const img = document.createElement("img");
     img.src = this.picture;
     img.alt = this.name;
+    img.setAttribute("loading", "lazy");
     img.classList.add("photographer-portrait");
     img.setAttribute("aria-label", "Photographer portrait");
 

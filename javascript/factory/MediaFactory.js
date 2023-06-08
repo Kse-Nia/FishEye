@@ -25,6 +25,7 @@ class Media {
         this.likes++;
         likesElement.textContent = this.likes;
         this.liked = true;
+        window.dispatchEvent(new eventLikes());
       }
     });
   }
@@ -44,6 +45,7 @@ class MediaImage extends Media {
     let icon = document.createElement("i");
 
     let picture = document.createElement("img");
+    picture.setAttribute("loading", "lazy");
     picture.setAttribute("class", "gallery-article_picture media media-item");
     picture.setAttribute("data-index", this.currentMediaIndex); // Index for Lightbox
     picture.setAttribute("aria-label", "Photo");
@@ -129,6 +131,12 @@ class MediaFactory {
     } else {
       throw new Error("Error, aucun media ou media non reconnu");
     }
+  }
+}
+
+class eventLikes extends Event {
+  constructor() {
+    super("like");
   }
 }
 

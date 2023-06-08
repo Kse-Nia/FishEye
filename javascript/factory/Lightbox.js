@@ -17,7 +17,7 @@ class Lightbox {
   <div class="lightbox-content">
   <div class="lightbox-conten-prev">
     <a>
-      <img src="./assets/icons/prev.svg" alt="Previous" class="lightbox-prev"
+      <img src="./assets/icons/prev.svg" alt="Previous" class="lightbox-prev" loading="lazy"
     /></a>
     </div>
     <div class="lightbox-content-media"></div>
@@ -27,10 +27,11 @@ class Lightbox {
             src="./assets/icons/close.svg"
             alt="Close"
             class="lightbox-close"
+            loading="lazy"
           />
         </button>
         <a>
-        <img src="./assets/icons/next.svg" alt="Next" class="lightbox-next"
+        <img src="./assets/icons/next.svg" alt="Next" class="lightbox-next" loading="lazy"
       /></a>
     </div>
   </div>
@@ -67,6 +68,7 @@ class Lightbox {
     } else {
       mediaElement = document.createElement("img");
       mediaElement.classList.add("lightbox__image");
+      mediaElement.setAttribute("loading", "lazy");
       mediaElement.src = `./assets/Media/${mediaItem.photographerId}/${mediaItem.image}`;
     }
     mediaElement.classList.add("lightboxMediaOpen");
