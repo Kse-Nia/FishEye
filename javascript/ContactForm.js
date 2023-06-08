@@ -63,7 +63,6 @@ class ContactForm {
   photographName() {
     const photographerName = document.querySelector(".contact-name");
     photographerName.textContent = this.profileName;
-    console.log("contact-name", photographerName);
   }
   validateForm(e) {
     e.preventDefault();
@@ -79,9 +78,9 @@ class ContactForm {
     const errorVerification = (condition) => {
       if (!condition) {
         isValid = false;
+        throw new Error("Le formulaire n'est pas valide");
       } else {
         console.log("Envoyé");
-        throw new Error("Le formulaire n'est pas valide");
       }
     };
     errorVerification(firstNameInput, firstNameInput.value.trim().length < 2);
@@ -90,7 +89,12 @@ class ContactForm {
     errorVerification(messageInput, !messageInput.value.trim().length < 5);
 
     if (isValid) {
-      console.log("Message envoyé");
+      console.log(
+        firstNameInput.value,
+        lastNameInput.value,
+        emailInput.value,
+        messageInput.value
+      );
     }
     return isValid;
   }
