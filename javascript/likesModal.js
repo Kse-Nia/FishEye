@@ -8,12 +8,14 @@ class LikesModal {
       0
     );
   }
+  // eventListener for likes
   likesListen() {
     window.addEventListener("like", () => {
       this.likes++;
       this.updateLikesModal();
     });
   }
+  // Update display of likes
   updateLikesModal = () => {
     const likesModal = document.querySelector(".likes-modal");
     likesModal.querySelector(".likes-container span").textContent = this.likes;
@@ -22,7 +24,7 @@ class LikesModal {
     const likesModal = document.createElement("div");
     likesModal.classList.add("likes-modal");
     likesModal.innerHTML = `
-    <aside class="likes-modal-content">
+  <aside class="likes-modal-content">
     <div class="likes-modal-content-text">
       <div class="likes-container">
         <span>${this.likes}</span>
