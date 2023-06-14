@@ -234,7 +234,7 @@ h1 {
 }
 .gallery_container {
   margin: auto;
-  padding: 0 2% 5%;
+  padding: 0 3% 5% 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -303,6 +303,7 @@ h1 {
 .dropMenu_label {
   font-weight: 800;
   font-size: 18px;
+  margin-right: 10px;
 }
 
 .dropMenu-options {
