@@ -14,6 +14,7 @@ class PhotographerFactory {
     const article = document.createElement("article");
     article.classList.add("photographer-article");
     article.dataset.id = this.id;
+    article.tabIndex = 0;
 
     const img = document.createElement("img");
     img.src = this.picture;
@@ -37,19 +38,19 @@ class PhotographerFactory {
     const p3 = document.createElement("p");
     p3.classList.add("photographer-price");
     p3.textContent = `${this.price}€/jour`;
-
-    article.appendChild(img);
-    article.appendChild(h2);
-    article.appendChild(p1);
-    article.appendChild(p2);
-    article.appendChild(p3);
+    article.append(img, h2, p1, p2, p3);
 
     article.addEventListener("click", () => {
       const photographId = article.dataset.id;
       window.location.href = `./photographer.html?id=${photographId}`;
       console.log(photographId);
     });
-
+    article.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        const photographId = article.dataset.id;
+        window.location.href = `./photographer.html?id=${photographId}`;
+      }
+    });
     return article;
   }
 
@@ -85,12 +86,8 @@ class PhotographerFactory {
     button.type = "button";
     button.textContent = "Contactez-moi";
 
-    profileDetailsDiv.appendChild(h1);
-    profileDetailsDiv.appendChild(p1);
-    profileDetailsDiv.appendChild(p2);
-    article.appendChild(img);
-    article.appendChild(profileDetailsDiv);
-    article.appendChild(button);
+    profileDetailsDiv.append(h1, p1, p2);
+    article.append(img, profileDetailsDiv, button);
 
     profileContainer.appendChild(article);
 

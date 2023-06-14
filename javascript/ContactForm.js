@@ -19,7 +19,6 @@ class ContactForm {
         this.modal.style.display = "block";
         this.photographName();
         this.form.querySelector("input").focus();
-        console.log("open with key");
       }
     });
     document.addEventListener("keydown", (e) => {
