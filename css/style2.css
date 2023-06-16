@@ -431,7 +431,6 @@ h1 {
   width: 60vw;
   height: 80vh;
   margin: 0 auto 0;
-  padding: 0 auto 0;
   -o-object-fit: cover;
   object-fit: cover;
 }
