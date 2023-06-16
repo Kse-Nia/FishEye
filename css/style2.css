@@ -86,7 +86,7 @@ h1 {
 .photographer-portrait {
   border-radius: 50%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 200px;
   width: 200px;
   margin: 3% auto 3%;
@@ -97,7 +97,7 @@ h1 {
     max-width: 300px;
     border-radius: 50%;
     -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 .photographer-localisation {
@@ -145,7 +145,7 @@ h1 {
   order: 3;
   margin: 0;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media only screen and (max-width: 750px) {
   .profile-article img {
@@ -261,7 +261,7 @@ h1 {
   width: 350px;
   height: 300px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .gallery-article_description {
   background-color: #ffffff;
@@ -299,11 +299,16 @@ h1 {
   display: flex;
   align-items: center;
 }
+.dropMenu:focus-within .dropMenu-options {
+  display: block;
+}
 
 .dropMenu_label {
   font-weight: 800;
   font-size: 18px;
   margin-right: 10px;
+  border: none;
+  background: none;
 }
 
 .dropMenu-options {
@@ -419,9 +424,8 @@ h1 {
   width: 60vw;
   height: 80vh;
   margin: 0 auto 0;
-  padding: 0 auto 0;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .lightbox__video {
   width: 60vw;
@@ -429,13 +433,27 @@ h1 {
   margin: 0 auto 0;
   padding: 0 auto 0;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .lightbox_controlers {
   background: none;
-  margin-top: 8%;
+  margin-top: 9%;
   height: 100%;
   flex-direction: column !important;
+}
+.lightbox-prev {
+  background: none;
+  border: none;
+  width: 3vw;
+  height: auto;
+  margin: 10px 30px 0;
+}
+.lightbox-next {
+  background: none;
+  border: none;
+  width: 3vw;
+  height: auto;
+  margin: 15px 25px 0;
 }
 .lightbox-close {
   border: none;
@@ -464,4 +482,4 @@ h1 {
 .likes-modal-content_text .likes-container {
   display: flex;
   align-items: center;
-}/*# sourceMappingURL=style2.css.map */
+}

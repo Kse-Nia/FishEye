@@ -1,4 +1,3 @@
-/* exported FilterAdapter */
 class FilterAdapter {
   constructor(Media, photographerId, openLightbox) {
     this.Media = Media;
@@ -15,16 +14,16 @@ class FilterAdapter {
   getFilterDOM() {
     const filter = `
     <div class="dropMenu">
-        <span id="sort-options" class="dropMenu_label">Trier par:</span>
+        <button id="sort-options" class="dropMenu_label" aria-haspopup="true">Trier par:</button>
         <div class="option-wrapper" aria-labelledby="sort-options">
         <div class="selected-option-wrapper">
-          <div class="selected-option" data-value="popularity">Popularité</div>
-          <i class="fa fa-solid fa-chevron-up"></i>
+            <div class="selected-option" data-value="popularity" tabindex="0">Popularité</div>
+            <i class="fa fa-solid fa-chevron-up"></i>
         </div>
         <div class="dropMenu-options">
-          <button type="button" role="button" value="popularity">Popularité</button>
-          <button type="button" value="date">Date</button>
-          <button type="button" value="title">Titre</button>
+            <button type="button" role="button" value="popularity" tabindex="0">Popularité</button>
+            <button type="button" value="date" tabindex="0">Date</button>
+            <button type="button" value="title" tabindex="0">Titre</button>
         </div>
       </div>
     </div>
@@ -35,16 +34,36 @@ class FilterAdapter {
 
     const selectedOption = this.$wrapper.querySelector(".selected-option");
     const buttons = this.$wrapper.querySelectorAll(".dropMenu-options button");
+
+    // Accessibility menu navigation
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         selectedOption.innerHTML = button.innerHTML;
         selectedOption.setAttribute("data-value", button.value);
         this.sortList(button.value);
       });
+
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          selectedOption.innerHTML = button.innerHTML;
+          selectedOption.setAttribute("data-value", button.value);
+          this.sortList(button.value);
+        }
+      });
     });
+    const dropMenu = this.$wrapper.querySelector(".dropMenu");
+    const optionWrapper = this.$wrapper.querySelector(".option-wrapper");
+
+    dropMenu.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        optionWrapper.style.display = "block";
+      } else if (event.key === "Escape") {
+        optionWrapper.style.display = "none";
+      }
+    });
+
     return this.$wrapper;
   }
-
   sortList(sortBy) {
     const mediaFiltered = this.Media.filter(
       (item) => item.photographerId == this._photographerId

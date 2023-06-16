@@ -28,11 +28,14 @@ class LikesModal {
     <div class="likes-modal-content-text">
       <div class="likes-container">
         <span>${this.likes}</span>
-        <i class="fas fa-heart"></i>
+          <i class="fas fa-heart" aria-hidden="true"></i>
       </div>
     </div>
-    <p class="likes-modal-content-text-price">${this.price}€ / jour</p>
-  </aside>  
+    <p class="likes-modal-content-text-price" aria-label="Photographer rate">
+      ${this.price}€ / jour
+    </p>
+  </aside>
+  
     `;
     return likesModal;
   }
