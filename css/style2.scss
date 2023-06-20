@@ -30,9 +30,8 @@
     flex-direction: column;
     @include devices(mobile) {
       width: 100%;
-      margin: 1% 0;
+      margin: 5% auto 5%;
       display: flex;
-      flex-direction: column-reverse !important;
       justify-content: center;
       align-items: center;
     }
@@ -91,6 +90,8 @@
     flex-direction: row;
     @include devices(mobile) {
       width: 100%;
+      flex-direction: column-reverse;
+      margin-bottom: 5%;
     }
     &_details {
       order: 1;
@@ -102,6 +103,7 @@
       @include devices(mobile) {
         width: 100%;
         height: 100%;
+        margin: 5% 0 5%;
       }
     }
   }
